@@ -1,0 +1,215 @@
+/* General Page Styles */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #fafafa;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark {
+  background: #1e1e1e;
+  color: #eaeaea;
+}
+
+/* Header with animated title */
+header {
+  background: #ffffff;
+  color: #111;
+  padding: 40px 20px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  transition: background 0.3s, color 0.3s;
+}
+body.dark header {
+  background: #2a2a2a;
+  color: #fff;
+}
+
+header .animated-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #ff416c, #ffbb00, #4cafef, #00c9a7, #ff416c);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientMove 6s ease infinite;
+  margin: 0;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+header p {
+  margin: 10px 0 0;
+  font-size: 1rem;
+  color: #666;
+}
+body.dark header p {
+  color: #bbb;
+}
+
+/* Dark Mode Button - clean, no hover box */
+.toggle-btn {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  z-index: 1000;
+}
+.toggle-btn:focus {
+  outline: none;
+}
+.toggle-btn img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  transition: transform 0.2s ease, filter 0.3s ease;
+}
+.toggle-btn img:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
+/* Sections */
+section {
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 1000px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+body.dark section {
+  background: #2a2a2a;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+
+section h2 {
+  margin-bottom: 15px;
+  color: #444;
+  border-left: 4px solid #888;
+  padding-left: 10px;
+  font-weight: 600;
+  position: relative;
+  display: inline-block;
+}
+section h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: #444;
+  transition: width 0.3s ease;
+}
+section h2:hover::after {
+  width: 100%;
+}
+body.dark section h2 {
+  color: #eaeaea;
+  border-left: 4px solid #aaa;
+}
+body.dark section h2::after {
+  background: #eaeaea;
+}
+
+/* Button Container - grid layout for cards */
+.button-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+}
+
+/* Card-Style Buttons */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  padding: 15px;
+  background: #fff;
+  color: #333;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.3s;
+}
+
+.btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+  background: #f4f4f4;
+}
+
+.btn-red {
+  background: #c0392b;
+  color: #fff;
+}
+.btn-red:hover {
+  background: #922b21;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+body.dark .btn {
+  background: #333;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+body.dark .btn:hover {
+  background: #444;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+}
+body.dark .btn-red {
+  background: #e74c3c;
+}
+body.dark .btn-red:hover {
+  background: #c0392b;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 15px;
+  background: #fff;
+  color: #666;
+  border-top: 1px solid #eee;
+  margin-top: 20px;
+  transition: background 0.3s, color 0.3s;
+}
+body.dark footer {
+  background: #2a2a2a;
+  color: #aaa;
+}
+footer a {
+  color: #444;
+  text-decoration: none;
+  font-weight: 500;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+body.dark footer a {
+  color: #ddd;
+}
