@@ -138,6 +138,92 @@ body.dark section h2::after {
   gap: 15px;
 }
 
+/* Dropdown container behaves like other grid items */
+.dropdown {
+  position: relative;
+  display: block;     /* grid item, not inline */
+  width: 100%;        /* match other cards */
+  height: 100%;       /* consistent height */
+}
+
+/* Main dropdown button = same style as .btn */
+.dropdown > .btn {
+  all: unset; /* remove browser's default button styling */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  padding: 15px;
+  background: #fff;
+  color: #333;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.3s;
+  cursor: pointer;
+}
+
+
+.dropdown > .btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+  background: #f4f4f4;
+}
+
+/* Dropdown menu hidden by default */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 110%; /* show below the main button */
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+/* Show when toggled by JS */
+.dropdown-content.show {
+  display: block;
+}
+
+/* Sub-buttons */
+.dropdown-content a {
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #333;
+  transition: background 0.2s;
+}
+.dropdown-content a:hover {
+  background: #f4f4f4;
+}
+
+/* Dark mode support */
+body.dark .dropdown > .btn {
+  background: #333;
+  color: #fff;
+}
+body.dark .dropdown-content {
+  background: #2a2a2a;
+}
+body.dark .dropdown-content a {
+  color: #fff;
+}
+body.dark .dropdown-content a:hover {
+  background: #444;
+}
+
+
+
+
+
+
+
+
+
 /* Card-Style Buttons */
 .btn {
   display: flex;
