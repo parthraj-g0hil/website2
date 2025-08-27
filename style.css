@@ -134,7 +134,7 @@ body.dark section h2::after {
 /* Button Container - grid layout for cards */
 .button-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-columns: repeat(6, 1fr);
   gap: 15px;
 }
 
@@ -153,6 +153,7 @@ body.dark section h2::after {
   align-items: center;
   justify-content: center;
   height: 100px;
+  width: 100%; /* Added to fix the width issue */
   padding: 15px;
   background: #fff;
   color: #333;
@@ -162,6 +163,7 @@ body.dark section h2::after {
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.3s;
   cursor: pointer;
+  box-sizing: border-box; /* Added to include padding in width calculation */
 }
 
 
@@ -173,7 +175,7 @@ body.dark section h2::after {
 
 /* Dropdown menu hidden by default */
 .dropdown-content {
-  display: none;
+  display: none; /* stay hidden until .show is applied */
   position: absolute;
   top: 110%; /* show below the main button */
   left: 0;
@@ -182,12 +184,17 @@ body.dark section h2::after {
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   z-index: 1000;
+  padding: 10px;
+  min-width: 600px; /* space for multiple columns */
 }
 
 /* Show when toggled by JS */
 .dropdown-content.show {
-  display: block;
+  display: grid; /* grid layout only when visible */
+  grid-template-columns: repeat(3, 1fr); /* 2 columns */
+  gap: 8px;
 }
+
 
 /* Sub-buttons */
 .dropdown-content a {
@@ -216,12 +223,6 @@ body.dark .dropdown-content a:hover {
   background: #444;
 }
 
-
-
-
-
-
-
 /* 🌐 Light Mode - Server Setup Section */
 .Server-Setup .btn {
   background: #70b359;
@@ -240,11 +241,6 @@ body.dark .Server-Setup .btn:hover {
   background: #518341;  /* even deeper blue on hover */
 }
 
-
-
-
-
-
 /* 🌐 Light Mode - Database-Setup Section */
 .Database-Setup .btn {
   background: #8761d1;
@@ -261,11 +257,6 @@ body.dark .Database-Setup .btn {
 body.dark .Database-Setup .btn:hover {
   background: #9362f4;  /* even deeper blue on hover */
 }
-
-
-
-
-
 
 /* 🌐 Light Mode - Error-Problem-Solutions */
 .Error-Problem-Solutions .btn {
@@ -285,11 +276,6 @@ body.dark .Error-Problem-Solutions .btn:hover {
   background: #6478ff;  /* even deeper blue on hover */
 }
 
-
-
-
-
-
 /* 🌐 Light Mode - DEVOPS */
 .DEVOPS .btn {
   background: #b26f43;
@@ -307,11 +293,6 @@ body.dark .DEVOPS .btn {
 body.dark .DEVOPS .btn:hover {
   background: #be7a4c;  /* even deeper blue on hover */
 }
-
-
-
-
-
 
 /* 🌐 Light Mode - AWS */
 .AWS .btn {
@@ -331,23 +312,6 @@ body.dark .AWS .btn:hover {
   background: #4a4a4a;  /* even deeper blue on hover */
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Card-Style Buttons */
 .btn {
   display: flex;
@@ -362,6 +326,7 @@ body.dark .AWS .btn:hover {
   font-weight: 600;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.3s;
+  box-sizing: border-box; /* Added for consistency */
 }
 
 .btn:hover {
