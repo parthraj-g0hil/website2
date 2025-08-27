@@ -222,6 +222,130 @@ body.dark .dropdown-content a:hover {
 
 
 
+/* 🌐 Light Mode - Server Setup Section */
+.Server-Setup .btn {
+  background: #70b359;
+  color: #fff;
+}
+.Server-Setup .btn:hover {
+  background: #518341
+}
+
+/* 🌙 Dark Mode - Server Setup Section */
+body.dark .Server-Setup .btn {
+  background: #65a250;  /* darker shade of blue */
+  color: #fff;
+}
+body.dark .Server-Setup .btn:hover {
+  background: #518341;  /* even deeper blue on hover */
+}
+
+
+
+
+
+
+/* 🌐 Light Mode - Database-Setup Section */
+.Database-Setup .btn {
+  background: #8761d1;
+  color: #fff;
+}
+.Database-Setup .btn:hover {
+  background: #7856ba;
+}
+/* 🌙 Dark Mode - Database-Setup Section */
+body.dark .Database-Setup .btn {
+  background: #a172ff;  /* darker shade of blue */
+  color: #fff;
+}
+body.dark .Database-Setup .btn:hover {
+  background: #9362f4;  /* even deeper blue on hover */
+}
+
+
+
+
+
+
+/* 🌐 Light Mode - Error-Problem-Solutions */
+.Error-Problem-Solutions .btn {
+  background: #6678ed;
+  color: #fff;
+}
+.Error-Problem-Solutions .btn:hover {
+  background: #495de0
+}
+
+/* 🌙 Dark Mode - Error-Problem-Solutions */
+body.dark .Error-Problem-Solutions .btn {
+  background: #7d8fff;  /* darker shade of blue */
+  color: #fff;
+}
+body.dark .Error-Problem-Solutions .btn:hover {
+  background: #6478ff;  /* even deeper blue on hover */
+}
+
+
+
+
+
+
+/* 🌐 Light Mode - DEVOPS */
+.DEVOPS .btn {
+  background: #b26f43;
+  color: #fff;
+}
+.DEVOPS .btn:hover {
+  background: #905a36
+}
+
+/* 🌙 Dark Mode - DEVOPS */
+body.dark .DEVOPS .btn {
+  background: #e49058;  /* darker shade of blue */
+  color: #fff;
+}
+body.dark .DEVOPS .btn:hover {
+  background: #be7a4c;  /* even deeper blue on hover */
+}
+
+
+
+
+
+
+/* 🌐 Light Mode - AWS */
+.AWS .btn {
+  background: #5e5e5e;
+  color: #fff;
+}
+.AWS .btn:hover {
+  background: #4a4a4a
+}
+
+/* 🌙 Dark Mode - AWS */
+body.dark .AWS .btn {
+  background: #5f5e5e;  /* darker shade of blue */
+  color: #fff;
+}
+body.dark .AWS .btn:hover {
+  background: #4a4a4a;  /* even deeper blue on hover */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* Card-Style Buttons */
@@ -247,11 +371,11 @@ body.dark .dropdown-content a:hover {
 }
 
 .btn-red {
-  background: #c0392b;
+  background: #ce5c4f;
   color: #fff;
 }
 .btn-red:hover {
-  background: #922b21;
+  background: #af3d30;
 }
 
 body {
