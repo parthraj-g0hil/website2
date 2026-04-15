@@ -1,390 +1,689 @@
-/* General Page Styles */
-body {
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: #fafafa;
-  color: #333;
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
-  transition: background 0.3s, color 0.3s;
+/* CentralOps — dashboard-style personal hub */
+:root {
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --bg-base: #f0f2f5;
+  --bg-elevated: #ffffff;
+  --bg-grid: rgba(15, 20, 25, 0.04);
+  --text: #1a1f26;
+  --text-muted: #5c6570;
+  --border: rgba(15, 20, 25, 0.08);
+  --shadow: 0 1px 2px rgba(15, 20, 25, 0.06), 0 8px 24px rgba(15, 20, 25, 0.06);
+  --shadow-hover: 0 4px 12px rgba(15, 20, 25, 0.1), 0 16px 40px rgba(15, 20, 25, 0.08);
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --header-glow: linear-gradient(120deg, #3d9eff 0%, #7c5cff 40%, #00c9a7 100%);
+  --btn-ease: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --btn-ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 body.dark {
-  background: #1e1e1e;
-  color: #eaeaea;
+  --bg-base: #0f1419;
+  --bg-elevated: #171c24;
+  --bg-grid: rgba(255, 255, 255, 0.03);
+  --text: #e8eaed;
+  --text-muted: #9aa3ad;
+  --border: rgba(255, 255, 255, 0.08);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 28px rgba(0, 0, 0, 0.35);
+  --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.45);
 }
 
-/* Header with animated title */
-header {
-  background: #ffffff;
-  color: #111;
-  padding: 60px 40px 20px;
-  text-align: center;
-  border-bottom: 1px solid #eee;
-  transition: background 0.3s, color 0.3s;
-}
-body.dark header {
-  background: #2a2a2a;
-  color: #fff;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-header .animated-title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  background: linear-gradient(90deg, #ff416c, #ffbb00, #4cafef, #00c9a7, #ff416c);
-  background-size: 400% 400%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientMove 6s ease infinite;
-  margin: 0;
+html {
+  scroll-behavior: smooth;
 }
 
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-header p {
-  margin: 10px 0 0;
-  font-size: 1rem;
-  color: #666;
-}
-body.dark header p {
-  color: #bbb;
-}
-
-/* Dark Mode Button - clean, no hover box */
-.toggle-btn {
-  position: fixed !important;
-  top: 20px !important;
-  right: 20px !important;
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  cursor: pointer;
-  z-index: 9999 !important; /* higher than anything else */
-}
-.toggle-btn:focus {
-  outline: none;
-}
-.toggle-btn img {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  transition: transform 0.2s ease, filter 0.3s ease;
-}
-.toggle-btn img:hover {
-  transform: scale(1.1);
-  filter: brightness(1.2);
-}   
-
-/* Sections */
-section {
-  padding: 20px;
-  margin: 20px auto;
-  max-width: 1000px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-body.dark section {
-  background: #2a2a2a;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.4);
-}
-
-section h2 {
-  margin-bottom: 15px;
-  color: #444;
-  border-left: 4px solid #888;
-  padding-left: 10px;
-  font-weight: 600;
-  position: relative;
-  display: inline-block;
-}
-section h2::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 0%;
-  height: 2px;
-  background: #444;
-  transition: width 0.3s ease;
-}
-section h2:hover::after {
-  width: 100%;
-}
-body.dark section h2 {
-  color: #eaeaea;
-  border-left: 4px solid #aaa;
-}
-body.dark section h2::after {
-  background: #eaeaea;
-}
-
-/* Button Container - grid layout for cards */
-.button-container {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 15px;
-}
-
-/* Dropdown container behaves like other grid items */
-.dropdown {
-  position: relative;
-  display: block;     /* grid item, not inline */
-  width: 100%;        /* match other cards */
-  height: 100%;       /* consistent height */
-}
-
-/* Main dropdown button = same style as .btn */
-.dropdown > .btn {
-  all: unset; /* remove browser's default button styling */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100px;
-  width: 100%; /* Added to fix the width issue */
-  padding: 15px;
-  background: #fff;
-  color: #333;
-  text-decoration: none;
-  border-radius: 12px;
-  font-weight: 600;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.3s;
-  cursor: pointer;
-  box-sizing: border-box; /* Added to include padding in width calculation */
-}
-
-
-.dropdown > .btn:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.2);
-  background: #f4f4f4;
-}
-
-/* Dropdown menu hidden by default */
-.dropdown-content {
-  display: none; /* stay hidden until .show is applied */
-  position: absolute;
-  top: 110%; /* show below the main button */
-  left: 0;
-  right: 0;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  z-index: 1000;
-  padding: 10px;
-  min-width: 600px; /* space for multiple columns */
-}
-
-/* Show when toggled by JS */
-.dropdown-content.show {
-  display: grid; /* grid layout only when visible */
-  grid-template-columns: repeat(3, 1fr); /* 2 columns */
-  gap: 8px;
-}
-
-
-/* Sub-buttons */
-.dropdown-content a {
-  display: block;
-  padding: 10px 15px;
-  text-decoration: none;
-  color: #333;
-  transition: background 0.2s;
-}
-.dropdown-content a:hover {
-  background: #f4f4f4;
-}
-
-/* Dark mode support */
-body.dark .dropdown > .btn {
-  background: #333;
-  color: #fff;
-}
-body.dark .dropdown-content {
-  background: #2a2a2a;
-}
-body.dark .dropdown-content a {
-  color: #fff;
-}
-body.dark .dropdown-content a:hover {
-  background: #444;
-}
-
-/* 🌐 Light Mode - Server Setup Section */
-.Server-Setup .btn {
-  background: #70b359;
-  color: #fff;
-}
-.Server-Setup .btn:hover {
-  background: #518341
-}
-
-/* 🌙 Dark Mode - Server Setup Section */
-body.dark .Server-Setup .btn {
-  background: #65a250;  /* darker shade of blue */
-  color: #fff;
-}
-body.dark .Server-Setup .btn:hover {
-  background: #518341;  /* even deeper blue on hover */
-}
-
-/* 🌐 Light Mode - Database-Setup Section */
-.Database-Setup .btn {
-  background: #8761d1;
-  color: #fff;
-}
-.Database-Setup .btn:hover {
-  background: #7856ba;
-}
-/* 🌙 Dark Mode - Database-Setup Section */
-body.dark .Database-Setup .btn {
-  background: #a172ff;  /* darker shade of blue */
-  color: #fff;
-}
-body.dark .Database-Setup .btn:hover {
-  background: #9362f4;  /* even deeper blue on hover */
-}
-
-/* 🌐 Light Mode - Error-Problem-Solutions */
-.Error-Problem-Solutions .btn {
-  background: #6678ed;
-  color: #fff;
-}
-.Error-Problem-Solutions .btn:hover {
-  background: #495de0
-}
-
-/* 🌙 Dark Mode - Error-Problem-Solutions */
-body.dark .Error-Problem-Solutions .btn {
-  background: #7d8fff;  /* darker shade of blue */
-  color: #fff;
-}
-body.dark .Error-Problem-Solutions .btn:hover {
-  background: #6478ff;  /* even deeper blue on hover */
-}
-
-/* 🌐 Light Mode - DEVOPS */
-.DEVOPS .btn {
-  background: #b26f43;
-  color: #fff;
-}
-.DEVOPS .btn:hover {
-  background: #905a36
-}
-
-/* 🌙 Dark Mode - DEVOPS */
-body.dark .DEVOPS .btn {
-  background: #e49058;  /* darker shade of blue */
-  color: #fff;
-}
-body.dark .DEVOPS .btn:hover {
-  background: #be7a4c;  /* even deeper blue on hover */
-}
-
-/* 🌐 Light Mode - AWS */
-.AWS .btn {
-  background: #5e5e5e;
-  color: #fff;
-}
-.AWS .btn:hover {
-  background: #4a4a4a
-}
-
-/* 🌙 Dark Mode - AWS */
-body.dark .AWS .btn {
-  background: #5f5e5e;  /* darker shade of blue */
-  color: #fff;
-}
-body.dark .AWS .btn:hover {
-  background: #4a4a4a;  /* even deeper blue on hover */
-}
-
-/* Card-Style Buttons */
-.btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100px;
-  padding: 15px;
-  background: #fff;
-  color: #333;
-  text-decoration: none;
-  border-radius: 12px;
-  font-weight: 600;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.3s;
-  box-sizing: border-box; /* Added for consistency */
-}
-
-.btn:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.2);
-  background: #f4f4f4;
-}
-
-.btn-red {
-  background: #ce5c4f;
-  color: #fff;
-}
-.btn-red:hover {
-  background: #af3d30;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  section {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  section.visible .button-container > * {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .dropdown-content {
+    transition-duration: 0.01ms !important;
+  }
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--text);
+  background-color: var(--bg-base);
+  background-image:
+    radial-gradient(ellipse 120% 80% at 50% -20%, rgba(61, 158, 255, 0.12), transparent 50%),
+    linear-gradient(var(--bg-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px);
+  background-size: 100% 100%, 32px 32px, 32px 32px;
+  transition: background-color 0.35s ease, color 0.25s ease;
 }
 
-body.dark .btn {
-  background: #333;
+/* Theme toggle */
+.toggle-btn {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  animation: toggleIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s both;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.toggle-btn:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-hover);
+}
+
+.toggle-btn:focus-visible {
+  outline: 2px solid #3d9eff;
+  outline-offset: 2px;
+}
+
+.toggle-btn img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: block;
+}
+
+/* Hero header */
+.site-header {
+  position: relative;
+  padding: clamp(3rem, 8vw, 5rem) 1.5rem 2.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-elevated);
+  overflow: hidden;
+}
+
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(61, 158, 255, 0.15), transparent 55%);
+  pointer-events: none;
+}
+
+.site-header__inner {
+  position: relative;
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+@keyframes headerLineIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.site-header__eyebrow {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  animation: headerLineIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+.animated-title {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  background: var(--header-glow);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: headerLineIn 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.08s backwards,
+    gradientMove 10s ease infinite;
+}
+
+@keyframes gradientMove {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.site-header__tagline {
+  margin: 1rem 0 0;
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 36ch;
+  margin-left: auto;
+  margin-right: auto;
+  animation: headerLineIn 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.2s backwards;
+}
+
+.page-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 3rem;
+}
+
+/* Sections */
+@keyframes sectionIn {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.992);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes sectionHeadIn {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes tileIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes dropdownLinkIn {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes footerIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes toggleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.85) rotate(-12deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+section {
+  margin-bottom: 1.25rem;
+  padding: 1.35rem 1.35rem 1.5rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  opacity: 0;
+  transform: translateY(22px) scale(0.992);
+  transition: box-shadow 0.25s ease;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+  animation: sectionIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+section.visible h2 {
+  animation: sectionHeadIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
+}
+
+/* Staggered link tiles (--stagger set in script.js) */
+section.visible .button-container > * {
+  animation: tileIn 0.48s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--stagger, 0) * 38ms);
+}
+
+section:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+section h2 {
+  margin: 0 0 1.1rem;
+  padding-bottom: 0.65rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Accent stripes per area */
+.Server-Setup {
+  border-left: 4px solid #4a9d3f;
+}
+.Server-Hardening {
+  border-left: 4px solid #c94a3d;
+}
+.Database-Setup {
+  border-left: 4px solid #7c5cff;
+}
+.Error-Problem-Solutions {
+  border-left: 4px solid #4d6bff;
+}
+.DEVOPS {
+  border-left: 4px solid #c17a45;
+}
+.AWS {
+  border-left: 4px solid #6b7280;
+}
+
+/* Link grid */
+.button-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.75rem;
+  align-items: stretch;
+}
+
+@media (min-width: 900px) {
+  .button-container {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
+
+.dropdown {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 88px;
+  z-index: 1;
+}
+
+/* Open dropdown stacks above plain link tiles (see .button-container > a.btn) */
+.dropdown.dropdown--open {
+  z-index: 40;
+}
+
+/* Plain link tiles stay clickable (above closed neighbours’ empty overlay boxes) */
+.button-container > a.btn {
+  position: relative;
+  z-index: 2;
+}
+
+.dropdown > .btn {
+  all: unset;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 88px;
+  width: 100%;
+  padding: 0.75rem 0.65rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.9rem;
+  line-height: 1.25;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: transform 0.32s var(--btn-ease), box-shadow 0.32s ease, filter 0.22s ease;
+}
+
+.dropdown > .btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(125deg, rgba(255, 255, 255, 0.35) 0%, transparent 45%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.dropdown > .btn:hover::after {
+  opacity: 1;
+}
+
+/*
+ * Popover: avoid display:none so open/close transitions run.
+ * When closed, collapse height (max-height: 0) so huge menus (e.g. VPC) don’t
+ * leave an invisible layer over other tiles — that was blocking hover/clicks
+ * on EC2, IAM, etc. which appear earlier in the grid.
+ */
+.dropdown-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.35rem;
+  position: absolute;
+  z-index: 2000;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  min-width: min(100%, 280px);
+  max-width: min(92vw, 820px);
+  /* Collapsed when closed — no invisible hit-box over the page */
+  max-height: 0;
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 0 solid transparent;
+  border-radius: var(--radius-md);
+  background: var(--bg-elevated);
+  box-shadow: none;
+  -webkit-overflow-scrolling: touch;
+  transform-origin: top center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-10px) scale(0.96);
+  transition:
+    max-height 0.32s var(--btn-ease-soft),
+    opacity 0.22s var(--btn-ease-soft),
+    transform 0.28s var(--btn-ease),
+    visibility 0s linear 0.32s,
+    padding 0.28s ease,
+    box-shadow 0.25s ease;
+}
+
+.dropdown-content.show {
+  max-height: min(70vh, 520px);
+  padding: 0.5rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--border);
+  box-shadow: var(--shadow-hover);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+  transition:
+    max-height 0.38s var(--btn-ease-soft),
+    opacity 0.26s var(--btn-ease-soft),
+    transform 0.32s var(--btn-ease),
+    visibility 0s,
+    padding 0.28s ease,
+    border-width 0s,
+    box-shadow 0.25s ease;
+}
+
+.dropdown-content.show a {
+  animation: dropdownLinkIn 0.32s var(--btn-ease-soft) backwards;
+}
+
+.dropdown-content.show a:nth-child(1) {
+  animation-delay: 0.02s;
+}
+.dropdown-content.show a:nth-child(2) {
+  animation-delay: 0.05s;
+}
+.dropdown-content.show a:nth-child(3) {
+  animation-delay: 0.08s;
+}
+.dropdown-content.show a:nth-child(4) {
+  animation-delay: 0.11s;
+}
+.dropdown-content.show a:nth-child(5) {
+  animation-delay: 0.14s;
+}
+.dropdown-content.show a:nth-child(6) {
+  animation-delay: 0.17s;
+}
+.dropdown-content.show a:nth-child(7) {
+  animation-delay: 0.2s;
+}
+.dropdown-content.show a:nth-child(8) {
+  animation-delay: 0.23s;
+}
+.dropdown-content.show a:nth-child(9) {
+  animation-delay: 0.26s;
+}
+.dropdown-content.show a:nth-child(10) {
+  animation-delay: 0.29s;
+}
+.dropdown-content.show a:nth-child(n + 11) {
+  animation-delay: 0.32s;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 0.55rem 0.65rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  color: var(--text);
+  font-size: 0.85rem;
+  line-height: 1.35;
+  transition: background 0.18s ease, transform 0.2s var(--btn-ease-soft), box-shadow 0.2s ease;
+}
+
+.dropdown-content a:hover {
+  background: var(--bg-base);
+  transform: translateX(5px);
+  box-shadow: inset 3px 0 0 rgba(61, 158, 255, 0.55);
+}
+
+body.dark .dropdown-content a:hover {
+  box-shadow: inset 3px 0 0 rgba(96, 165, 250, 0.7);
+}
+
+/* Primary tiles */
+.btn {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 88px;
+  padding: 0.75rem 0.65rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.9rem;
+  line-height: 1.25;
+  text-decoration: none;
   color: #fff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.12), 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: transform 0.32s var(--btn-ease), box-shadow 0.32s ease, filter 0.22s ease;
 }
-body.dark .btn:hover {
-  background: #444;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(125deg, rgba(255, 255, 255, 0.38) 0%, transparent 42%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
 }
-body.dark .btn-red {
-  background: #e74c3c;
+
+.btn:hover::after {
+  opacity: 1;
 }
-body.dark .btn-red:hover {
-  background: #c0392b;
+
+.btn:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+  filter: brightness(1.06) saturate(1.06);
+}
+
+.btn:active {
+  transform: translateY(-2px) scale(0.98);
+  transition-duration: 0.12s;
+  filter: brightness(0.96);
+}
+
+.dropdown > .btn:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  filter: brightness(1.06) saturate(1.05);
+}
+
+.dropdown > .btn:active {
+  transform: translateY(-2px) scale(0.98);
+  transition-duration: 0.12s;
+}
+
+.btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Section color tokens */
+.Server-Setup .btn,
+.Server-Setup .dropdown > .btn {
+  background: linear-gradient(145deg, #5cb84a 0%, #3d8a32 100%);
+  color: #fff;
+}
+.Server-Setup .btn:hover,
+.Server-Setup .dropdown > .btn:hover {
+  filter: brightness(1.08);
+}
+
+.Server-Hardening .btn,
+.Server-Hardening .dropdown > .btn {
+  background: linear-gradient(145deg, #e06354 0%, #b83d30 100%);
+  color: #fff;
+}
+
+.Database-Setup .btn,
+.Database-Setup .dropdown > .btn {
+  background: linear-gradient(145deg, #8b6bff 0%, #6542e0 100%);
+  color: #fff;
+}
+
+.Error-Problem-Solutions .btn,
+.Error-Problem-Solutions .dropdown > .btn {
+  background: linear-gradient(145deg, #6b7fff 0%, #4a5de0 100%);
+  color: #fff;
+}
+
+.DEVOPS .btn,
+.DEVOPS .dropdown > .btn {
+  background: linear-gradient(145deg, #d4894f 0%, #a86a38 100%);
+  color: #fff;
+}
+
+.AWS .btn,
+.AWS .dropdown > .btn {
+  background: linear-gradient(145deg, #6b7280 0%, #4b5563 100%);
+  color: #fff;
+}
+
+.btn-red {
+  background: linear-gradient(145deg, #e06354 0%, #b83d30 100%) !important;
+}
+
+body.dark .Server-Setup .btn,
+body.dark .Server-Setup .dropdown > .btn {
+  background: linear-gradient(145deg, #5aad4e 0%, #3f8c35 100%);
+}
+body.dark .Database-Setup .btn,
+body.dark .Database-Setup .dropdown > .btn {
+  background: linear-gradient(145deg, #9b7fff 0%, #6e4fd9 100%);
+}
+body.dark .Error-Problem-Solutions .btn,
+body.dark .Error-Problem-Solutions .dropdown > .btn {
+  background: linear-gradient(145deg, #7d8fff 0%, #5568e8 100%);
+}
+body.dark .DEVOPS .btn,
+body.dark .DEVOPS .dropdown > .btn {
+  background: linear-gradient(145deg, #e49a5c 0%, #b87a42 100%);
+}
+body.dark .AWS .btn,
+body.dark .AWS .dropdown > .btn {
+  background: linear-gradient(145deg, #7a828f 0%, #525a66 100%);
+}
+
+body.dark .dropdown-content {
+  background: #1c222c;
+  border-color: var(--border);
+}
+
+body.dark .dropdown-content a:hover {
+  background: #252d3a;
 }
 
 /* Footer */
-footer {
+.site-footer {
   text-align: center;
-  padding: 15px;
-  background: #fff;
-  color: #666;
-  border-top: 1px solid #eee;
-  margin-top: 20px;
-  transition: background 0.3s, color 0.3s;
+  padding: 1.5rem 1rem 2rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  background: var(--bg-elevated);
+  animation: footerIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
 }
-body.dark footer {
-  background: #2a2a2a;
-  color: #aaa;
-}
-footer a {
-  color: #444;
+
+.site-footer a {
+  color: var(--text);
+  font-weight: 600;
   text-decoration: none;
-  font-weight: 500;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
 }
-footer a:hover {
-  text-decoration: underline;
-}
-body.dark footer a {
-  color: #ddd;
+
+.site-footer a:hover {
+  border-bottom-color: currentColor;
 }

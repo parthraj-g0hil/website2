@@ -3,21 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f1419">
   <title>CentralOps</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="images/favicon.png">
 </head>
 <body>
 
-  <button class="toggle-btn" onclick="toggleDarkMode()">
-    <img src="images/dark-mode-1.png" alt="Toggle Dark Mode">
+  <button type="button" class="toggle-btn" onclick="toggleDarkMode()" aria-label="Toggle dark mode" title="Toggle theme">
+    <img src="images/dark-mode-1.png" alt="" width="36" height="36">
   </button>
 
-  <header>
-    <h1 class="animated-title">🏗️ CentralOps</h1>
-    <p>Centralized collection of Server-DB setups, automation & troubleshooting guides</p>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <p class="site-header__eyebrow">Personal ops hub</p>
+      <h1 class="animated-title">CentralOps</h1>
+      <p class="site-header__tagline">Server &amp; DB setups, automation, and troubleshooting — one click away.</p>
+    </div>
   </header>
+
+  <main class="page-main">
 
   <!-- Server Setup Section -->
   <section class="Server-Setup">
@@ -31,7 +37,7 @@
     <div class="dropdown">
       <a href="#" class="btn">CloudWatch Agent</a>
       <div class="dropdown-content">
-        <a href="https://github.com/parthraj-g0hil/server-setup/tree/main/cloudwatch-agent/userdata_linux_advanced2.sh" target="_blank">Advnced</a>
+        <a href="https://github.com/parthraj-g0hil/server-setup/tree/main/cloudwatch-agent/userdata_linux_advanced2.sh" target="_blank">Advanced</a>
         <a href="https://github.com/parthraj-g0hil/server-setup/tree/main/cloudwatch-agent/userdata_linux_standard2.sh" target="_blank">Standard</a>
         <a href="https://github.com/parthraj-g0hil/server-setup/tree/main/cloudwatch-agent/userdata_lunux_basic2.sh" target="_blank">Troubleshoot</a>
       </div>
@@ -110,18 +116,13 @@
 
 
   <section class="DEVOPS">
-    <h2>🛠️ DEVOPS </h2>
+    <h2>🛠️ DevOps</h2>
     <div class="button-container">
       <a class="btn" href="https://github.com/parthraj-g0hil/Git/blob/main/git.pdf" target="_blank">Git</a>
       <a class="btn" href="https://github.com/parthraj-g0hil/Docker/blob/main/README.md" target="_blank">Docker</a>
       <a class="btn" href="https://github.com/parthraj-g0hil/Linux/tree/main/LINUX-CORE" target="_blank">Linux</a>
     </div>
-
-
-
-
-      </div>
-    </section>
+  </section>
 
 
   <section class="AWS">
@@ -170,8 +171,6 @@
 </div>
 
 
-
-
 <!-- AWS Security --> 
 <div class="dropdown">
   <a href="#" class="btn">AWS Security</a>
@@ -194,8 +193,6 @@
     <a href="https://github.com/parthraj-g0hil/AWS/blob/main/Cloud-formation/electromech/aws-security/account-password-policy.yaml" target="_blank">Account Password Policy</a>
   </div>
 </div>
-
-
 
 
         <a class="btn" href="https://github.com/parthraj-g0hil/AWS/tree/main/Cloud-formation/electromech/waf" target="_blank">WAF</a>
@@ -224,55 +221,16 @@
     </div>
 
 
-
-
-
   </div>    
   </section>
 
 
+  </main>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <footer>
-    <p>💡 Built & Maintained for <a href="https://www.linkedin.com/in/parthrajgohil/" target="_blank">parthraj-g0hil</a></p>
+  <footer class="site-footer">
+    <p>Built &amp; maintained by <a href="https://www.linkedin.com/in/parthrajgohil/" target="_blank" rel="noopener noreferrer">parthraj-g0hil</a></p>
   </footer>
 
-
-  <script>
-  // Dark Mode Toggle
-  function toggleDarkMode() {
-    document.body.classList.toggle("dark");
-  }
-
-  // Fade-in on scroll
-  const sections = document.querySelectorAll("section");
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      }
-    });
-  }, { threshold: 0.2 });
-
-  sections.forEach(section => observer.observe(section));
-</script>
 <script src="script.js"></script>
 </body>
 </html>
